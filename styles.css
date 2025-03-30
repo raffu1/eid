@@ -2,7 +2,7 @@
     --gold: #D4AF37;
     --gold-light: #e8c252;
     --deep-blue: #0A2463;
-    --emerald: #1B998B;
+    --emerald: red;
     --cream: #F8F1E5;
     --dark-gold: #B8860B;
     --golden-ratio: 1.618;
@@ -161,6 +161,9 @@ body {
     animation: bounce 2s infinite;
     cursor: pointer;
     z-index: 2;
+}
+#seee{
+    color:black !important;
 }
 
 /* Message Section */
@@ -338,3 +341,109 @@ body {
         padding: 40px 20px;
     }
 }
+/* Add to animated elements: */
+   .floating-star, .crescent-moon {
+       will-change: transform;
+   }
+   
+   
+/* Full Page Contact Section */
+.fullpage-contact {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contact-content {
+    max-width: 500px;
+    width: 100%;
+}
+
+.fullpage-contact h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Salami Sticker */
+.salami-container {
+    margin-bottom: 40px;
+}
+
+.salami-sticker {
+    width: 220px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.salami-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Three Small Icons */
+.small-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.small-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Phone Number Section */
+.phone-section {
+    margin-top: 20px;
+}
+
+.phone-number {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 0 0 15px 0;
+    font-weight: normal;
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    border: 0.4px solid black;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .fullpage-contact h1 {
+        font-size: 2rem;
+    }
+    
+    .salami-sticker {
+        width: 100px;
+    }
+    
+    .phone-number {
+        font-size: 1.5rem;
+    }
+        }
