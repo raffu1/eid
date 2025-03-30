@@ -1,0 +1,340 @@
+:root {
+    --gold: #D4AF37;
+    --gold-light: #e8c252;
+    --deep-blue: #0A2463;
+    --emerald: #1B998B;
+    --cream: #F8F1E5;
+    --dark-gold: #B8860B;
+    --golden-ratio: 1.618;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--cream);
+    color: #333;
+    line-height: var(--golden-ratio);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    min-height: 600px;
+    background: linear-gradient(135deg, var(--deep-blue), var(--emerald));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+    text-align: left;
+    animation: fadeInUp 1s ease-out;
+}
+
+.eid-sticker {
+    display: inline-block;
+    background-color: var(--gold);
+    color: var(--deep-blue);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    transform: rotate(-5deg);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    animation: stickerBounce 1s ease-in-out;
+}
+
+.eid-sticker span {
+    display: inline-block;
+    transform: rotate(2deg);
+}
+
+.hero h1 {
+    font-family: 'Amiri', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+    animation: glow 2s infinite alternate;
+    margin-top: 20px;
+}
+
+.hero-subtitle {
+    color: white;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 3rem;
+    max-width: 80%;
+    opacity: 0.9;
+}
+
+.hero-graphics {
+    position: relative;
+    width: 40%;
+    height: 400px;
+}
+
+.crescent-moon {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: 50px;
+    top: 50px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 25px 25px 0 0 var(--gold);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-lantern {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    right: 100px;
+    bottom: 50px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 80% 20%, 80% 80%, 50% 100%, 20% 80%, 20% 20%);
+    animation: float 5s ease-in-out infinite 1s;
+    opacity: 0.8;
+}
+
+.floating-star {
+    position: absolute;
+    background-color: var(--gold-light);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    opacity: 0.7;
+}
+
+.star-1 {
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    left: 50px;
+    animation: twinkle 3s infinite alternate;
+}
+
+.star-2 {
+    width: 20px;
+    height: 20px;
+    top: 150px;
+    left: 30px;
+    animation: twinkle 4s infinite alternate 0.5s;
+}
+
+.star-3 {
+    width: 25px;
+    height: 25px;
+    top: 250px;
+    left: 80px;
+    animation: twinkle 3.5s infinite alternate 1s;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Message Section */
+.message-section {
+    padding: 100px 20px;
+    position: relative;
+    background-color: var(--cream);
+}
+
+.message-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 60px 40px;
+    overflow: hidden;
+}
+
+.message-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.personal-greeting {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--deep-blue);
+    margin-bottom: 10px;
+}
+
+.eid-mubarak-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.message-content {
+    position: relative;
+    z-index: 1;
+}
+
+.eid-message {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: var(--golden-ratio);
+    text-align: center;
+}
+
+.dua-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.dua-decoration {
+    width: 30px;
+    height: 2px;
+    background-color: var(--gold);
+    margin: 0 15px;
+    opacity: 0.7;
+}
+
+.dua {
+    font-style: italic;
+    color: var(--emerald);
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.ornamental-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, var(--gold), var(--emerald), var(--deep-blue));
+}
+
+/* Confetti Animation */
+.confetti {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Animations */
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
+    to { text-shadow: 0 0 15px rgba(212, 175, 55, 0.8); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+    100% { opacity: 0.3; transform: scale(0.9); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes stickerBounce {
+    0% { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+    60% { transform: scale(1.1) rotate(-5deg); }
+    100% { transform: scale(1) rotate(-5deg); opacity: 1; }
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .hero-subtitle {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-graphics {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .crescent-moon {
+        right: 20px;
+        top: 50px;
+    }
+    
+    .floating-lantern {
+        right: 50px;
+        bottom: 30px;
+    }
+    
+    .message-container {
+        padding: 40px 20px;
+    }
+}
