@@ -1,112 +1,112 @@
-// Personalize the greeting
+// Input sanitization functions
 function sanitizeInput(input) {
-    return input.replace(/[^a-zA-Z0-9 \-\']/g, '');
+    return input.replace(/[^a-zA-ZÀ-ÿ \-\']/g, '').substring(0, 30);
 }
 
+function sanitizePhone(input) {
+    return input.replace(/[^0-9+]/g, '').substring(0, 15);
+}
+
+// Get URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 let name = urlParams.get('name');
+let sender = urlParams.get('sender') || 'Raffsun';
+let phone = urlParams.get('phone') || '01774994794';
 
-if (name) {
-    name = sanitizeInput(name);
-    if (name.length > 0) {
+// Update all dynamic elements
+function updateAllElements() {
+    // Update recipient name
+    if (name) {
+        name = sanitizeInput(name);
         document.getElementById('friendName').textContent = name;
-    } else {
-        promptForName();
     }
-} else {
-    promptForName();
+    
+    // Update sender name
+    sender = sanitizeInput(sender);
+    document.getElementById('senderName').textContent = sender;
+    
+    // Update phone number
+    phone = sanitizePhone(phone);
+    document.getElementById('phoneNumber').textContent = phone;
+    
+    // Update copy functionality
+    document.querySelector('.copy-button').addEventListener('click', function() {
+        navigator.clipboard.writeText(phone).then(() => {
+            const originalText = this.textContent;
+            this.textContent = 'copied!';
+            setTimeout(() => {
+                this.textContent = originalText;
+            }, 2000);
+        });
+    });
 }
 
-function promptForName() {
-    const userName = prompt("Please enter your name to personalize this Eid greeting:", "Friend");
-    if (userName) {
-        const sanitized = sanitizeInput(userName);
-        if (sanitized.length > 0) {
-            document.getElementById('friendName').textContent = sanitized;
-            // Update URL without reload
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('name', sanitized);
-            window.history.pushState({}, '', newUrl);
-        } else {
-            document.getElementById('friendName').textContent = "Friend";
-        }
+// Prompt for missing values
+function promptForMissingValues() {
+    if (!name) {
+        name = prompt("Whome you want to send?", "Friend");
+        name = sanitizeInput(name);
     }
+    
+    if (!urlParams.has('sender')) {
+        sender = prompt("Your name?", "Raffsun");
+        sender = sanitizeInput(sender);
+    }
+    
+    if (!urlParams.has('phone')) {
+        phone = prompt("Your phone number?", "01774994794");
+        phone = sanitizePhone(phone);
+    }
+    
+    updateURLParams();
 }
 
-// Automatic confetti animation on page load
+// Update URL without reload
+function updateURLParams() {
+    const newUrl = new URL(window.location);
+    if (name) newUrl.searchParams.set('name', name);
+    if (sender) newUrl.searchParams.set('sender', sender);
+    if (phone) newUrl.searchParams.set('phone', phone);
+    window.history.pushState({}, '', newUrl);
+}
+
+// Confetti animation (existing code)
 function createConfetti() {
-    const confettiContainer = document.getElementById('confettiContainer');
-    const shapes = ['circle', 'square', 'triangle'];
-    const colors = ['#D4AF37', '#0A2463', '#1B998B', '#F8F1E5', '#FFFFFF'];
-    
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        const size = 5 + Math.random() * 10;
-        const delay = Math.random() * 3;
-        
-        confetti.style.position = 'absolute';
-        confetti.style.width = size + 'px';
-        confetti.style.height = size + 'px';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = '-10px';
-        confetti.style.opacity = '0.8';
-        confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
-        confetti.style.animationDelay = delay + 's';
-        
-        // Different shapes
-        if (shape === 'square') {
-            confetti.style.borderRadius = '0';
-        } else if (shape === 'triangle') {
-            confetti.style.width = '0';
-            confetti.style.height = '0';
-            confetti.style.borderLeft = size/2 + 'px solid transparent';
-            confetti.style.borderRight = size/2 + 'px solid transparent';
-            confetti.style.borderBottom = size + 'px solid ' + colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.backgroundColor = 'transparent';
-        } else {
-            confetti.style.borderRadius = '50%';
-        }
-        
-        confetti.style.animation = 'confettiFall ' + (3 + Math.random() * 3) + 's linear ' + delay + 's infinite';
-        confettiContainer.appendChild(confetti);
-    }
-    
-    // Play celebration sound
-    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-cheering-2013.mp3');
-    audio.volume = 0.2;
-    audio.play().catch(e => console.log("Audio playback prevented:", e));
+    // ... (keep your existing confetti code) ...
 }
 
-// Start animations when page loads
+// On page load
 window.addEventListener('load', function() {
+    if (!urlParams.has('name') || !urlParams.has('sender') || !urlParams.has('phone')) {
+        promptForMissingValues();
+    }
+    
+    updateAllElements();
     createConfetti();
     
-    // Remove confetti after some time to prevent performance issues
     setTimeout(() => {
         document.getElementById('confettiContainer').innerHTML = '';
     }, 8000);
-});
-
-// Smooth scroll to message section
-document.querySelector('.scroll-indicator').addEventListener('click', function() {
-    document.querySelector('.message-section').scrollIntoView({ 
-        behavior: 'smooth' 
+    
+    // Smooth scroll handlers
+    document.querySelector('.scroll-indicator').addEventListener('click', function() {
+        document.querySelector('.message-section').scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    document.querySelector('#seee').addEventListener('click', function() {
+        document.querySelector('.fullpage-contact').scrollIntoView({ behavior: 'smooth' });
     });
 });
 
-// Animate elements when they come into view
+// Intersection Observer (existing code)
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
         }
     });
-}, {
-    threshold: 0.1
-});
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.message-container, .dua').forEach(el => {
     observer.observe(el);
-});
+});});
