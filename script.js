@@ -49,12 +49,12 @@ function promptForMissingValues() {
     }
     
     if (!urlParams.has('sender')) {
-        sender = prompt("Your name?", "Raffsun");
+        sender = prompt("Your name?", "Me");
         sender = sanitizeInput(sender);
     }
     
     if (!urlParams.has('phone')) {
-        phone = prompt("Your phone number?", "01774994794");
+        phone = prompt("Your phone number?", "01004567890");
         phone = sanitizePhone(phone);
     }
     
@@ -109,4 +109,4 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.message-container, .dua').forEach(el => {
     observer.observe(el);
-});});
+});
